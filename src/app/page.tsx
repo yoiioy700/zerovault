@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Lock, ShieldCheck, CheckCircle2, User, Globe, Database, CheckCircle } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { ConnectButton } from "@/components/ConnectButton";
 import { useState } from "react";
@@ -197,9 +197,9 @@ export default function Home() {
         </RevealDiv>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { num: "01", title: "Store", emoji: "🔐", desc: "Add credentials locally. Pedersen hash commitment stored on Starknet. Raw data stays in your browser.", accent: "#7C3AED" },
-            { num: "02", title: "Prove", emoji: "🔏", desc: "Generate a zero-knowledge STARK proof. Cryptographic receipt proves ownership without revealing underlying data.", accent: "#22D3EE" },
-            { num: "03", title: "Verify", emoji: "✅", desc: "Share a one-click link. Anyone can verify your proof on-chain, instantly. No personal data exposed. Ever.", accent: "#10B981" },
+            { num: "01", title: "Store", icon: <Lock size={32} color="#7C3AED" />, desc: "Add credentials locally. Pedersen hash commitment stored on Starknet. Raw data stays in your browser.", accent: "#7C3AED" },
+            { num: "02", title: "Prove", icon: <ShieldCheck size={32} color="#22D3EE" />, desc: "Generate a zero-knowledge STARK proof. Cryptographic receipt proves ownership without revealing underlying data.", accent: "#22D3EE" },
+            { num: "03", title: "Verify", icon: <CheckCircle2 size={32} color="#10B981" />, desc: "Share a one-click link. Anyone can verify your proof on-chain, instantly. No personal data exposed. Ever.", accent: "#10B981" },
           ].map((s, i) => (
             <RevealDiv key={s.num} delay={i * 120} direction="up"
               className="card-hover flex flex-col justify-between rounded-2xl p-8"
@@ -207,7 +207,7 @@ export default function Home() {
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <span style={{ fontSize: 32 }}>{s.emoji}</span>
+                  <div>{s.icon}</div>
                   <span style={{ fontFamily: "var(--font-sans)", fontSize: 64, fontWeight: 800, color: "#0D0D0D", letterSpacing: "-3px", lineHeight: 1 }}>{s.num}</span>
                 </div>
                 <h3 style={{ fontSize: 22, fontWeight: 700, marginBottom: 12, color: s.accent }}>{s.title}</h3>
@@ -228,16 +228,16 @@ export default function Home() {
           </RevealDiv>
           <div className="flex flex-wrap items-center justify-center gap-2 my-8">
             {[
-              { label: "User", desc: "Adds credential\nlocally", color: "#FFF", bg: "#0A0A0A", border: "#222", textCol: "#888" },
-              { label: "Browser", desc: "Hash + encrypt\nclient-side", color: "#22D3EE", bg: "#0A0A0A", border: "#1A3A3E", textCol: "#22D3EE" },
-              { label: "Starknet", desc: "Stores commitment\non-chain", color: "#FFF", bg: "#22D3EE20", border: "#22D3EE40", textCol: "#22D3EE" },
-              { label: "Verifier", desc: "Checks proof,\nsees zero data", color: "#FFF", bg: "#10B98115", border: "#10B98140", textCol: "#10B981" },
+              { label: "User", desc: "Adds credential\nlocally", icon: <User size={24} color="#FFF" />, bg: "#0A0A0A", border: "#222", textCol: "#888" },
+              { label: "Browser", desc: "Hash + encrypt\nclient-side", icon: <Globe size={24} color="#22D3EE" />, bg: "#0A0A0A", border: "#1A3A3E", textCol: "#22D3EE" },
+              { label: "Starknet", desc: "Stores commitment\non-chain", icon: <Database size={24} color="#22D3EE" />, bg: "#22D3EE20", border: "#22D3EE40", textCol: "#22D3EE" },
+              { label: "Verifier", desc: "Checks proof,\nsees zero data", icon: <CheckCircle size={24} color="#10B981" />, bg: "#10B98115", border: "#10B98140", textCol: "#10B981" },
             ].map((node, i) => (
               <RevealDiv key={node.label} delay={i * 100} direction="up" className="flex items-center">
                 <div className="flex flex-col items-center gap-3" style={{ width: 130 }}>
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
                     style={{ background: node.bg, border: `1px solid ${node.border}` }}>
-                    <span style={{ fontSize: 20, fontWeight: 700, color: node.color }}>{node.label[0]}</span>
+                    {node.icon}
                   </div>
                   <span style={{ fontSize: 14, fontWeight: 600, color: node.textCol }}>{node.label}</span>
                   <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "#555", textAlign: "center", whiteSpace: "pre-line", lineHeight: 1.5 }}>{node.desc}</span>
