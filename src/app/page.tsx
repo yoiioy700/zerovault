@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ChevronDown, Lock, ShieldCheck, CheckCircle2, User, Globe, Database, CheckCircle } from "lucide-react";
+import { ArrowRight, ChevronDown, Lock, ShieldCheck, CheckCircle2, User, Globe, Database, CheckCircle, GraduationCap, IdCard, Briefcase } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { ConnectButton } from "@/components/ConnectButton";
 import { useState } from "react";
@@ -230,7 +230,7 @@ export default function Home() {
             {[
               { label: "User", desc: "Adds credential\nlocally", icon: <User size={24} color="#FFF" />, bg: "#0A0A0A", border: "#222", textCol: "#888" },
               { label: "Browser", desc: "Hash + encrypt\nclient-side", icon: <Globe size={24} color="#22D3EE" />, bg: "#0A0A0A", border: "#1A3A3E", textCol: "#22D3EE" },
-              { label: "Starknet", desc: "Stores commitment\non-chain", icon: <Database size={24} color="#22D3EE" />, bg: "#22D3EE20", border: "#22D3EE40", textCol: "#22D3EE" },
+              { label: "Starknet", desc: "Stores commitment\non-chain", icon: <img src="/starknet-logo.svg" width={28} height={28} alt="Starknet" style={{ filter: "drop-shadow(0 0 6px rgba(34,211,238,0.6))" }} />, bg: "#22D3EE20", border: "#22D3EE40", textCol: "#22D3EE" },
               { label: "Verifier", desc: "Checks proof,\nsees zero data", icon: <CheckCircle size={24} color="#10B981" />, bg: "#10B98115", border: "#10B98140", textCol: "#10B981" },
             ].map((node, i) => (
               <RevealDiv key={node.label} delay={i * 100} direction="up" className="flex items-center">
@@ -273,10 +273,10 @@ export default function Home() {
         </RevealDiv>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
-            { emoji: "🎓", title: "Academic Credentials", desc: "Prove you hold a degree without sharing your institution, GPA, or graduation date.", color: "#7C3AED" },
-            { emoji: "🔞", title: "Age Verification", desc: "Prove you're over 18 on any platform without a government ID leaving your hands.", color: "#22D3EE" },
-            { emoji: "💼", title: "Employment Status", desc: "Verify employment or income without sharing your employer or salary details.", color: "#10B981" },
-            { emoji: "🌍", title: "DAO Membership", desc: "Prove you're a member of a DAO or whitelist without doxing your wallet history.", color: "#F59E0B" },
+            { icon: <GraduationCap size={24} color="#7C3AED" />, title: "Academic Credentials", desc: "Prove you hold a degree without sharing your institution, GPA, or graduation date.", color: "#7C3AED" },
+            { icon: <IdCard size={24} color="#22D3EE" />, title: "Age Verification", desc: "Prove you're over 18 on any platform without a government ID leaving your hands.", color: "#22D3EE" },
+            { icon: <Briefcase size={24} color="#10B981" />, title: "Employment Status", desc: "Verify employment or income without sharing your employer or salary details.", color: "#10B981" },
+            { icon: <Globe size={24} color="#F59E0B" />, title: "DAO Membership", desc: "Prove you're a member of a DAO or whitelist without doxing your wallet history.", color: "#F59E0B" },
           ].map((uc, i) => (
             <RevealDiv key={uc.title} delay={i * 80} direction="up"
               className="card-hover flex gap-5 p-7 rounded-2xl"
@@ -284,7 +284,7 @@ export default function Home() {
             >
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
                 style={{ background: `${uc.color}15`, border: `1px solid ${uc.color}30` }}>
-                <span style={{ fontSize: 22 }}>{uc.emoji}</span>
+                {uc.icon}
               </div>
               <div>
                 <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: 6 }}>{uc.title}</h3>
